@@ -1,4 +1,6 @@
-package com.udacity.jdnd.course3.critter.user;
+package com.udacity.jdnd.course3.critter.user.employee;
+
+import com.udacity.jdnd.course3.critter.user.User;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;

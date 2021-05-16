@@ -12,8 +12,7 @@ public class Customer extends User {
     private String phoneNumber;
     private String notes;
 
-    private List<Long> petIds;
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private List<Pet> pets;
 
     public String getPhoneNumber() {
@@ -30,14 +29,6 @@ public class Customer extends User {
 
     public void setNotes(String notes) {
         this.notes = notes;
-    }
-
-    public List<Long> getPetIds() {
-        return petIds;
-    }
-
-    public void setPetIds(List<Long> petIds) {
-        this.petIds = petIds;
     }
 
     public List<Pet> getPets() {

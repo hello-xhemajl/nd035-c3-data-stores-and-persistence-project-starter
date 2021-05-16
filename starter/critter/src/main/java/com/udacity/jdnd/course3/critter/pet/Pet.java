@@ -14,7 +14,6 @@ public class Pet {
     private PetType type;
     private String name;
 
-    private long ownerId;
     @ManyToOne
     private Customer owner;
 
@@ -43,14 +42,6 @@ public class Pet {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public long getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(long ownerId) {
-        this.ownerId = ownerId;
     }
 
     public Customer getOwner() {

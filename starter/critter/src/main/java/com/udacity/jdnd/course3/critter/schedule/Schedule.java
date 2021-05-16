@@ -15,15 +15,15 @@ public class Schedule {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long scheduleId;
 
-    private List<Long> employeeIds;
     @ManyToMany
     private List<Employee> employees;
 
-    private List<Long> petIds;
     @ManyToMany
     private List<Pet> pets;
 
     private LocalDate date;
+
+    @ElementCollection
     private Set<EmployeeSkill> activities;
 
     public Long getScheduleId() {
@@ -34,28 +34,12 @@ public class Schedule {
         this.scheduleId = scheduleId;
     }
 
-    public List<Long> getEmployeeIds() {
-        return employeeIds;
-    }
-
-    public void setEmployeeIds(List<Long> employeeIds) {
-        this.employeeIds = employeeIds;
-    }
-
     public List<Employee> getEmployees() {
         return employees;
     }
 
     public void setEmployees(List<Employee> employees) {
         this.employees = employees;
-    }
-
-    public List<Long> getPetIds() {
-        return petIds;
-    }
-
-    public void setPetIds(List<Long> petIds) {
-        this.petIds = petIds;
     }
 
     public List<Pet> getPets() {

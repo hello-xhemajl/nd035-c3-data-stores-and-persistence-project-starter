@@ -1,4 +1,6 @@
-package com.udacity.jdnd.course3.critter.user.employee;
+package com.udacity.jdnd.course3.critter.user.employee.model;
+
+import com.udacity.jdnd.course3.critter.user.employee.model.EmployeeSkill;
 
 import java.time.LocalDate;
 import java.util.Set;

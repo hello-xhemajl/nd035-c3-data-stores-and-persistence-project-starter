@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -38,6 +39,8 @@ public class EmployeeService {
 
     public List<Employee> findEmployeesForService(LocalDate date, Set<EmployeeSkill> skills) {
         DayOfWeek dayOfWeek = date.getDayOfWeek();
-        return employeeRepository.findByDayOfWeekAndHavingAllSkills(dayOfWeek, skills);
+        return employeeRepository.findByDayOfWeek(dayOfWeek).stream()
+                .filter(employee -> employee.getSkills().containsAll(skills))
+                .collect(Collectors.toList());
     }
 }

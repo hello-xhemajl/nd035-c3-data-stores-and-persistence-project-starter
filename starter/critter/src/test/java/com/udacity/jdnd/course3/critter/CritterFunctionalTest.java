@@ -6,6 +6,9 @@ import com.udacity.jdnd.course3.critter.pet.PetController;
 import com.udacity.jdnd.course3.critter.pet.model.PetDTO;
 import com.udacity.jdnd.course3.critter.pet.model.PetType;
 import com.udacity.jdnd.course3.critter.schedule.ScheduleController;
+import com.udacity.jdnd.course3.critter.schedule.exception.ActivityNotProvidedForSchedule;
+import com.udacity.jdnd.course3.critter.schedule.exception.EmployeeNotAvailableForSchedule;
+import com.udacity.jdnd.course3.critter.schedule.exception.ScheduleException;
 import com.udacity.jdnd.course3.critter.schedule.model.ScheduleDTO;
 import com.udacity.jdnd.course3.critter.user.customer.CustomerController;
 import com.udacity.jdnd.course3.critter.user.customer.model.CustomerDTO;
@@ -178,7 +181,7 @@ public class CritterFunctionalTest {
     }
 
     @Test
-    public void testSchedulePetsForServiceWithEmployee() {
+    public void testSchedulePetsForServiceWithEmployee() throws ScheduleException {
         EmployeeDTO employeeTemp = createEmployeeDTO();
         employeeTemp.setDaysAvailable(Sets.newHashSet(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY));
         EmployeeDTO employeeDTO = employeeController.saveEmployee(employeeTemp);
@@ -202,7 +205,7 @@ public class CritterFunctionalTest {
     }
 
     @Test
-    public void testFindScheduleByEntities() {
+    public void testFindScheduleByEntities() throws ScheduleException {
         ScheduleDTO sched1 = populateSchedule(1, 2, LocalDate.of(2019, 12, 25), Sets.newHashSet(EmployeeSkill.FEEDING, EmployeeSkill.WALKING));
         ScheduleDTO sched2 = populateSchedule(3, 1, LocalDate.of(2019, 12, 26), Sets.newHashSet(EmployeeSkill.PETTING));
 
@@ -285,7 +288,7 @@ public class CritterFunctionalTest {
         return scheduleDTO;
     }
 
-    private ScheduleDTO populateSchedule(int numEmployees, int numPets, LocalDate date, Set<EmployeeSkill> activities) {
+    private ScheduleDTO populateSchedule(int numEmployees, int numPets, LocalDate date, Set<EmployeeSkill> activities) throws ScheduleException {
         List<Long> employeeIds = IntStream.range(0, numEmployees)
                 .mapToObj(i -> createEmployeeDTO())
                 .map(e -> {

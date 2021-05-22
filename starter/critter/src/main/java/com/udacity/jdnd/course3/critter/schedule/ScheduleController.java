@@ -2,6 +2,9 @@ package com.udacity.jdnd.course3.critter.schedule;
 
 import com.udacity.jdnd.course3.critter.pet.PetService;
 import com.udacity.jdnd.course3.critter.pet.model.Pet;
+import com.udacity.jdnd.course3.critter.schedule.exception.ActivityNotProvidedForSchedule;
+import com.udacity.jdnd.course3.critter.schedule.exception.EmployeeNotAvailableForSchedule;
+import com.udacity.jdnd.course3.critter.schedule.exception.ScheduleException;
 import com.udacity.jdnd.course3.critter.schedule.model.Schedule;
 import com.udacity.jdnd.course3.critter.schedule.model.ScheduleDTO;
 import com.udacity.jdnd.course3.critter.schedule.model.ScheduleDTOMapper;
@@ -24,7 +27,7 @@ public class ScheduleController {
     ScheduleService scheduleService;
 
     @PostMapping
-    public ScheduleDTO createSchedule(@RequestBody ScheduleDTO scheduleDTO) {
+    public ScheduleDTO createSchedule(@RequestBody ScheduleDTO scheduleDTO) throws ScheduleException {
         Schedule unsavedSchedule = ScheduleDTOMapper.mapToSchedule(scheduleDTO);
 
         Schedule schedule = scheduleService.saveSchedule(

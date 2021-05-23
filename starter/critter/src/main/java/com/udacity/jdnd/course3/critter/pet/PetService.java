@@ -25,8 +25,9 @@ public class PetService {
                 .orElseThrow(EntityNotFoundException::new);
 
         unsavedPet.setOwner(owner);
-
         Pet pet = petRepository.save(unsavedPet);
+
+        owner.addPet(pet);
 
         return pet;
     }

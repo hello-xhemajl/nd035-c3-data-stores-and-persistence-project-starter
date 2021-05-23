@@ -6,6 +6,7 @@ import com.udacity.jdnd.course3.critter.user.User;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -38,5 +39,16 @@ public class Customer extends User {
 
     public void setPets(List<Pet> pets) {
         this.pets = pets;
+    }
+
+    public void addPet(Pet pet) {
+        if(pets == null) pets = new ArrayList<>();
+        pets.add(pet);
+        pet.setOwner(this);
+    }
+
+    public void removePet(Pet pet) {
+        pets.remove(pet);
+        pet.setOwner(null);
     }
 }
